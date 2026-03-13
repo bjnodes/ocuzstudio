@@ -1,6 +1,7 @@
 ﻿const CONTACT_EMAIL = 'ocuz.studio@gmail.com';
 const INSTAGRAM_URL = 'https://www.instagram.com/hayoung.limm/';
 const BOOKING_STORAGE_KEY = 'ocuz-booking-selection';
+const defaultPackageId = 'fashion-lookbook';
 
 const imageLibrary = {
   commercial40001: './assets/portfolio/400-01.jpg',
@@ -35,145 +36,201 @@ const packageLibrary = [
     eyebrow: 'SHOOTING',
     price: 'KRW 700,000부터',
     summary: 'Clean product-focused shooting for e-commerce, detail cuts, and launch visuals.',
-    summaryKo: '이커머스, 디테일 컷, 신제품 런칭 비주얼에 적합한 제품 중심 촬영입니다.',
+    summaryKo: '제품 중심의 기본 촬영 패키지입니다.',
     features: ['기본 1세트 기준', '제품별 컷 수 협의', '기본 보정본 10장'],
-    recommended: 'Recommended for product pages, still-life layouts, and clean visual updates.',
-    recommendedKo: '제품 상세 페이지, 스틸라이프 구성, 기본 비주얼 업데이트에 적합합니다.'
+    recommended: 'Recommended for product pages and still-life layouts.',
+    recommendedKo: '제품 상세 페이지와 기본 스틸라이프에 적합합니다.'
   },
   {
     id: 'fashion-lookbook',
     label: 'Fashion / Lookbook',
     eyebrow: 'SHOOTING',
     price: 'KRW 1,800,000부터',
-    summary: 'Lookbook and fashion shooting built for brand mood, styling rhythm, and season launches.',
-    summaryKo: '브랜드 무드, 스타일링 리듬, 시즌 런칭을 위한 패션 / 룩북 촬영입니다.',
+    summary: 'Lookbook and fashion shooting built for brand mood and season launches.',
+    summaryKo: '패션 / 룩북 중심 촬영 패키지입니다.',
     features: ['하프데이 기준', '사전 무드 정리', '기본 보정본 20장'],
-    recommended: 'Best for brand lookbooks, collection drops, and editorial fashion direction.',
-    recommendedKo: '브랜드 룩북, 컬렉션 드롭, 에디토리얼 패션 촬영에 적합합니다.'
+    recommended: 'Best for brand lookbooks and editorial fashion direction.',
+    recommendedKo: '브랜드 룩북과 에디토리얼 패션 촬영에 적합합니다.'
   },
   {
     id: 'space-photography',
     label: 'Space Photography',
     eyebrow: 'SHOOTING',
     price: 'KRW 900,000부터',
-    summary: 'Interior and spatial shooting for studios, retail spaces, hospitality, and exhibitions.',
-    summaryKo: '스튜디오, 리테일 공간, 호스피탈리티, 전시 공간을 위한 공간 촬영입니다.',
+    summary: 'Interior and spatial shooting for studios, retail spaces, and exhibitions.',
+    summaryKo: '공간 중심 촬영 패키지입니다.',
     features: ['반나절 기준', '공간 동선 협의', '기본 보정본 12장'],
-    recommended: 'Suitable for brand spaces, showroom records, and spatial campaign assets.',
-    recommendedKo: '브랜드 공간 기록, 쇼룸 아카이브, 공간 캠페인 비주얼에 적합합니다.'
+    recommended: 'Suitable for brand spaces and showroom records.',
+    recommendedKo: '브랜드 공간과 쇼룸 아카이브에 적합합니다.'
   },
   {
     id: 'brand-campaign',
     label: 'Brand Campaign',
     eyebrow: 'SHOOTING',
     price: 'KRW 3,500,000부터',
-    summary: 'Full campaign shooting for key visuals, seasonal launches, and larger brand storytelling.',
-    summaryKo: '키 비주얼, 시즌 런칭, 규모 있는 브랜드 스토리텔링을 위한 캠페인 촬영입니다.',
+    summary: 'Full campaign shooting for key visuals and larger brand storytelling.',
+    summaryKo: '캠페인 중심 메인 촬영 패키지입니다.',
     features: ['풀데이 기준', '비주얼 디렉션 협업', '기본 보정본 30장'],
-    recommended: 'Best for hero campaigns, full brand launches, and multi-channel asset production.',
-    recommendedKo: '메인 캠페인, 브랜드 런칭, 멀티 채널 비주얼 제작에 적합합니다.'
+    recommended: 'Best for hero campaigns and multi-channel asset production.',
+    recommendedKo: '메인 캠페인과 멀티 채널 비주얼 제작에 적합합니다.'
   }
 ];
 
+const aiServiceLibrary = [
+  {
+    id: 'ai-lookbook',
+    label: 'AI Lookbook',
+    eyebrow: 'AI IMAGE',
+    price: 'KRW 650,000부터',
+    summary: 'AI-based lookbook image production for seasonal moods.',
+    summaryKo: 'AI 룩북 이미지 제작 패키지입니다.',
+    features: ['기본 6컷 기준', '무드 / 스타일 방향 협의', '업스케일 파일 전달'],
+    recommended: 'Recommended for lookbook drafts and launch teasers.',
+    recommendedKo: '룩북 초안과 런칭 티저 제작에 적합합니다.'
+  },
+  {
+    id: 'ai-product-image',
+    label: 'AI Product Image',
+    eyebrow: 'AI IMAGE',
+    price: 'KRW 550,000부터',
+    summary: 'AI product image production for detail cuts and online visuals.',
+    summaryKo: 'AI 제품 이미지 제작 패키지입니다.',
+    features: ['기본 5컷 기준', '배경 / 라이팅 방향 제안', '상세 비율 맞춤 가능'],
+    recommended: 'Best for detail pages and quick product mockups.',
+    recommendedKo: '상세 페이지와 빠른 제품 목업 제작에 적합합니다.'
+  },
+  {
+    id: 'ai-influencer-editorial',
+    label: 'AI Influencer Editorial',
+    eyebrow: 'AI IMAGE',
+    price: 'KRW 1,100,000부터',
+    summary: 'AI editorial portraits for campaigns and branded visuals.',
+    summaryKo: 'AI 화보 / 에디토리얼 이미지 제작 패키지입니다.',
+    features: ['기본 8컷 기준', '캐릭터 / 세계관 설정', '캠페인용 리터치 포함'],
+    recommended: 'Ideal for concept editorials and social visuals.',
+    recommendedKo: '컨셉 화보와 SNS 비주얼 제작에 적합합니다.'
+  },
+  {
+    id: 'ai-lookbook-film',
+    label: 'AI Lookbook Film',
+    eyebrow: 'AI VIDEO',
+    price: 'KRW 1,200,000부터',
+    summary: 'Short AI lookbook films for seasonal storytelling.',
+    summaryKo: 'AI 룩북 영상 제작 패키지입니다.',
+    features: ['15초 내외 기준', '세로 / 가로 비율 선택', '기본 사운드 가이드 포함'],
+    recommended: 'Recommended for reels and seasonal teasers.',
+    recommendedKo: '릴스와 시즌 티저 제작에 적합합니다.'
+  },
+  {
+    id: 'ai-ad-film',
+    label: 'AI Ad Film',
+    eyebrow: 'AI VIDEO',
+    price: 'KRW 1,900,000부터',
+    summary: 'AI ad film production for launch campaigns and commercials.',
+    summaryKo: 'AI 광고 영상 제작 패키지입니다.',
+    features: ['20초 내외 기준', '스토리보드 협의 포함', '기본 타이틀 그래픽 포함'],
+    recommended: 'Best for launch campaigns and digital ads.',
+    recommendedKo: '런칭 캠페인과 디지털 광고 제작에 적합합니다.'
+  },
+  {
+    id: 'ai-intro-film',
+    label: 'AI Intro Film',
+    eyebrow: 'AI VIDEO',
+    price: 'KRW 980,000부터',
+    summary: 'Short AI intro films for brands, products, and spaces.',
+    summaryKo: 'AI 소개 영상 제작 패키지입니다.',
+    features: ['10~15초 기준', '콘셉트 보드 정리 포함', '기본 자막 스타일 포함'],
+    recommended: 'Good for website openings and brand intros.',
+    recommendedKo: '웹사이트 오프닝과 브랜드 소개에 적합합니다.'
+  }
+];
+
+const bookingServiceLibrary = [...packageLibrary, ...aiServiceLibrary];
+
 const archiveCatalog = {
   commercial: {
-    label: 'COMMERCIAL',
     pageTitle: 'Commercial',
-    pageDescription: '브랜드와 제품 중심의 커머셜 작업만 별도로 모아둔 아카이브입니다.',
-    groups: [
-      {
-        id: 'brands',
-        label: 'Brands',
-        intro: '현재 공개된 커머셜 프로젝트는 400 시리즈입니다.',
-        items: [
-          {
-            id: '400-commercial',
-            brand: '400',
-            title: '400',
-            subtitle: 'Commercial stills centered on product clarity and restrained beauty details.',
-            subtitleKo: '제품과 디테일을 중심으로 구성한 커머셜 스틸 시리즈입니다.',
-            location: '서울',
-            deliverables: '커머셜 / 브랜드 / 제품 비주얼',
-            year: '2026',
-            description: 'A commercial series shaped to keep the product clear while maintaining a soft but intentional editorial finish.',
-            descriptionKo: '현재 아카이브에서 커머셜 작업으로 분류되는 대표 시리즈입니다. 제품이 명확하게 보이도록 구성하면서도, 뷰티 디테일과 부드럽지만 의도적인 에디토리얼 마감을 함께 가져가도록 작업했습니다.',
-            link: 'https://www.behance.net/gallery/245522087/400-',
-            images: [
-              imageLibrary.commercial40001,
-              imageLibrary.commercial40002,
-              imageLibrary.commercial40003,
-              imageLibrary.commercial40004,
-              imageLibrary.commercial40005,
-              imageLibrary.commercial40006
-            ]
-          }
-        ]
-      }
-    ]
+    pageDescription: '브랜드와 제품 중심의 커머셜 아카이브입니다.',
+    groups: [{
+      id: 'brands',
+      label: 'Brands',
+      intro: '현재 공개된 커머셜 프로젝트는 400 시리즈입니다.',
+      items: [{
+        id: '400-commercial',
+        brand: '400',
+        title: '400',
+        subtitle: 'Commercial stills centered on product clarity and restrained beauty details.',
+        subtitleKo: '제품과 디테일을 중심으로 구성한 커머셜 스틸 시리즈입니다.',
+        location: '서울',
+        deliverables: '커머셜 / 브랜드 / 제품 비주얼',
+        year: '2026',
+        description: 'A commercial series shaped to keep the product clear while maintaining a calm editorial finish.',
+        descriptionKo: '제품을 명확하게 보여주면서도 차분한 에디토리얼 무드를 유지한 커머셜 시리즈입니다.',
+        link: 'https://www.behance.net/gallery/245522087/400-',
+        images: [imageLibrary.commercial40001, imageLibrary.commercial40002, imageLibrary.commercial40003, imageLibrary.commercial40004, imageLibrary.commercial40005, imageLibrary.commercial40006]
+      }]
+    }]
   },
   project: {
-    label: 'PROJECT',
     pageTitle: 'Project',
-    pageDescription: '런웨이와 도시, 시즌의 결을 담은 프로젝트 중심 아카이브입니다.',
-    groups: [
-      {
-        id: '2026',
-        label: '2026',
-        intro: '2026년 기준 공개된 프로젝트 작업입니다.',
-        items: [
-          {
-            id: 'project-paris-fashion-weeks',
-            brand: 'Paris Fashion Weeks',
-            title: 'Paris Fashion Weeks',
-            subtitle: 'A city-facing project sequence built around fashion-week atmosphere and movement.',
-            subtitleKo: '패션위크의 공기와 이동의 결을 함께 담은 프로젝트 시퀀스입니다.',
-            location: '파리',
-            deliverables: '프로젝트 아카이브 / 에디토리얼 노트 / 도시 시퀀스',
-            year: '2026',
-            description: 'A project that records not only the event itself but also the surrounding atmosphere and transitions of the city.',
-            descriptionKo: '이 프로젝트는 행사 자체보다 장소의 공기까지 함께 다루는 작업입니다. 패션 위크를 둘러싼 이동과 분위기를 이미지 흐름 안에 남겨두는 에디토리얼 브리지에 가깝습니다.',
-            link: 'https://www.behance.net/gallery/245523613/Paris-fashion-weeks',
-            images: [imageLibrary.paris01, imageLibrary.paris02, imageLibrary.paris03, imageLibrary.paris04, imageLibrary.paris05]
-          },
-          {
-            id: 'project-kei-runway',
-            brand: 'Noir Kei Ninomiya',
-            title: 'PFW Noir Kei Ninomiya Runway',
-            subtitle: 'A runway study centered on silhouette, spacing, and sculptural contrast.',
-            subtitleKo: '실루엣과 간격, 조형적인 대비를 중심으로 정리한 런웨이 프로젝트입니다.',
-            location: '파리 패션위크',
-            deliverables: '프로젝트 아카이브 / 런웨이 스터디',
-            year: '2026',
-            description: 'This sequence is arranged less as a show report and more as a project note on silhouette, spacing, and runway tension.',
-            descriptionKo: '프로젝트 아카이브 안에서는 이 시리즈를 단순한 쇼 리포트가 아니라 실루엣과 간격, 그리고 런웨이의 긴장을 정리한 프로젝트 노트처럼 구성했습니다.',
-            link: 'https://www.behance.net/gallery/245525465/pfw-noir-Kei-ninomiya-runway',
-            images: [imageLibrary.kei01, imageLibrary.kei02, imageLibrary.kei03, imageLibrary.kei04, imageLibrary.kei05, imageLibrary.kei06]
-          },
-          {
-            id: 'project-paw-florentina',
-            brand: 'PAW',
-            title: 'PAW Florentina Leitner Runway',
-            subtitle: 'A runway diary shaped through texture, gesture, and editorial rhythm.',
-            subtitleKo: '질감과 움직임, 에디토리얼 리듬으로 편집한 런웨이 다이어리입니다.',
-            location: '파리 패션위크',
-            deliverables: '프로젝트 아카이브 / 런웨이 다이어리',
-            year: '2026',
-            description: 'A runway sequence edited to preserve immediacy while giving the archive a calmer and more deliberate rhythm.',
-            descriptionKo: '이 프로젝트 항목은 런웨이의 즉시성을 유지하면서도 보다 차분한 리듬으로 편집한 시퀀스입니다. 가까운 거리감과 질감을 살리면서도 아카이브로 남을 수 있도록 정제했습니다.',
-            link: 'https://www.behance.net/gallery/245526857/paw-florentina-leitner-runway',
-            images: [imageLibrary.paw01, imageLibrary.paw02, imageLibrary.paw03, imageLibrary.paw04, imageLibrary.paw05, imageLibrary.paw06]
-          }
-        ]
-      }
-    ]
+    pageDescription: '런웨이와 도시, 시즌의 결을 담은 프로젝트 아카이브입니다.',
+    groups: [{
+      id: '2026',
+      label: '2026',
+      intro: '2026년 기준 공개된 프로젝트 작업입니다.',
+      items: [
+        {
+          id: 'project-paris-fashion-weeks',
+          brand: 'Paris Fashion Weeks',
+          title: 'Paris Fashion Weeks',
+          subtitle: 'A city-facing project sequence built around fashion-week atmosphere and movement.',
+          subtitleKo: '패션위크의 공기와 이동의 결을 담은 프로젝트 시퀀스입니다.',
+          location: '파리',
+          deliverables: '프로젝트 아카이브 / 도시 시퀀스',
+          year: '2026',
+          description: 'A project that records not only the event itself but also the surrounding atmosphere of the city.',
+          descriptionKo: '행사 자체보다 장소의 공기와 이동의 흐름을 함께 담아낸 프로젝트입니다.',
+          link: 'https://www.behance.net/gallery/245523613/Paris-fashion-weeks',
+          images: [imageLibrary.paris01, imageLibrary.paris02, imageLibrary.paris03, imageLibrary.paris04, imageLibrary.paris05]
+        },
+        {
+          id: 'project-kei-runway',
+          brand: 'Noir Kei Ninomiya',
+          title: 'PFW Noir Kei Ninomiya Runway',
+          subtitle: 'A runway study centered on silhouette, spacing, and sculptural contrast.',
+          subtitleKo: '실루엣과 간격, 조형적인 대비를 중심으로 정리한 런웨이 프로젝트입니다.',
+          location: '파리 패션위크',
+          deliverables: '프로젝트 아카이브 / 런웨이 스터디',
+          year: '2026',
+          description: 'A project note on silhouette, spacing, and runway tension.',
+          descriptionKo: '실루엣과 간격, 런웨이의 긴장을 정리한 프로젝트 노트입니다.',
+          link: 'https://www.behance.net/gallery/245525465/pfw-noir-Kei-ninomiya-runway',
+          images: [imageLibrary.kei01, imageLibrary.kei02, imageLibrary.kei03, imageLibrary.kei04, imageLibrary.kei05, imageLibrary.kei06]
+        },
+        {
+          id: 'project-paw-florentina',
+          brand: 'PAW',
+          title: 'PAW Florentina Leitner Runway',
+          subtitle: 'A runway diary shaped through texture, gesture, and editorial rhythm.',
+          subtitleKo: '질감과 움직임, 에디토리얼 리듬으로 편집한 런웨이 다이어리입니다.',
+          location: '파리 패션위크',
+          deliverables: '프로젝트 아카이브 / 런웨이 다이어리',
+          year: '2026',
+          description: 'A runway sequence edited to preserve immediacy while keeping a calm rhythm.',
+          descriptionKo: '즉시성을 유지하면서도 차분한 리듬으로 편집한 런웨이 시퀀스입니다.',
+          link: 'https://www.behance.net/gallery/245526857/paw-florentina-leitner-runway',
+          images: [imageLibrary.paw01, imageLibrary.paw02, imageLibrary.paw03, imageLibrary.paw04, imageLibrary.paw05, imageLibrary.paw06]
+        }
+      ]
+    }]
   }
 };
 
 const feedCards = [
-  { title: '400 Commercial', caption: 'Commercial stills focused on product presence and beauty detail.', captionKo: '제품 중심의 커머셜 스틸과 뷰티 디테일 작업입니다.', image: imageLibrary.commercial40002, tag: '커머셜 / 서울' },
-  { title: 'Paris Fashion Weeks', caption: 'A project sequence capturing atmosphere, transit, and city rhythm.', captionKo: '도시의 공기와 이동의 리듬을 담은 프로젝트입니다.', image: imageLibrary.paris03, tag: '프로젝트 / 파리' },
-  { title: 'Noir Kei Ninomiya', caption: 'A runway study built around form, contrast, and spacing.', captionKo: '형태와 대비를 중심으로 정리한 런웨이 프로젝트입니다.', image: imageLibrary.kei02, tag: '프로젝트 / PFW' },
-  { title: 'PAW Florentina Leitner', caption: 'A runway diary edited through texture, gesture, and calm rhythm.', captionKo: '질감과 호흡을 중심으로 편집한 런웨이 다이어리입니다.', image: imageLibrary.paw04, tag: '프로젝트 / PFW' }
+  { title: '400 Commercial', caption: 'Commercial stills focused on product presence.', captionKo: '제품 중심의 커머셜 스틸 작업입니다.', image: imageLibrary.commercial40002, tag: '커머셜 / 서울' },
+  { title: 'Paris Fashion Weeks', caption: 'A project sequence capturing atmosphere and city rhythm.', captionKo: '도시의 공기와 이동의 리듬을 담은 프로젝트입니다.', image: imageLibrary.paris03, tag: '프로젝트 / 파리' },
+  { title: 'Noir Kei Ninomiya', caption: 'A runway study built around form and contrast.', captionKo: '형태와 대비를 중심으로 정리한 런웨이 프로젝트입니다.', image: imageLibrary.kei02, tag: '프로젝트 / PFW' },
+  { title: 'PAW Florentina Leitner', caption: 'A runway diary edited through texture and rhythm.', captionKo: '질감과 호흡을 중심으로 편집한 런웨이 다이어리입니다.', image: imageLibrary.paw04, tag: '프로젝트 / PFW' }
 ];
 
 const masonryItems = [
@@ -203,6 +260,13 @@ const masonryItems = [
 ];
 
 const timeOptions = ['10:00', '11:30', '13:00', '14:30', '16:00', '17:30'];
+function getDefaultPackage(library = bookingServiceLibrary) {
+  return library.find((pkg) => pkg.id === defaultPackageId) || library[0];
+}
+
+function findPackageById(id, library = bookingServiceLibrary) {
+  return library.find((pkg) => pkg.id === id) || getDefaultPackage(library);
+}
 
 function getBookingSelection() {
   try {
@@ -327,37 +391,36 @@ function renderArchivePage(mode) {
 
   render();
 }
-function renderPricing(gridId = 'pricingGrid', allowRedirect = false) {
+
+function renderPricing(gridId = 'pricingGrid', allowRedirect = false, library = packageLibrary, onSelect = null) {
   const grid = document.getElementById(gridId);
   if (!grid) return;
 
   const bookingSelection = getBookingSelection();
-  const selectedPackageId = bookingSelection.packageId || packageLibrary[1].id;
+  const selectedPackage = findPackageById(bookingSelection.packageId, library);
   grid.dataset.allowRedirect = allowRedirect ? 'true' : 'false';
 
-  grid.innerHTML = packageLibrary
-    .map((pkg) => `
-      <article class="package-card">
-        <div>
-          <p class="package-card__eyebrow">${escapeHtml(pkg.eyebrow)}</p>
-          <h3>${escapeHtml(pkg.label)}</h3>
-          <strong class="package-card__price">${escapeHtml(pkg.price)}</strong>
-          <p>${escapeHtml(pkg.summary)}</p>
-          <p class="package-card__translation">${escapeHtml(pkg.summaryKo || '')}</p>
-        </div>
-        <ul>
-          ${pkg.features.map((feature) => `<li>${escapeHtml(feature)}</li>`).join('')}
-        </ul>
-        <div class="package-card__footer">
-          <span>
-            ${escapeHtml(pkg.recommended)}
-            <span class="package-card__translation-note">${escapeHtml(pkg.recommendedKo || '')}</span>
-          </span>
-          <button type="button" class="package-card__button ${pkg.id === selectedPackageId ? 'is-active' : ''}" data-package-id="${pkg.id}">${allowRedirect ? '예약으로 이동' : '선택'}</button>
-        </div>
-      </article>
-    `)
-    .join('');
+  grid.innerHTML = library.map((pkg) => `
+    <article class="package-card">
+      <div>
+        <p class="package-card__eyebrow">${escapeHtml(pkg.eyebrow)}</p>
+        <h3>${escapeHtml(pkg.label)}</h3>
+        <strong class="package-card__price">${escapeHtml(pkg.price)}</strong>
+        <p>${escapeHtml(pkg.summary)}</p>
+        <p class="package-card__translation">${escapeHtml(pkg.summaryKo || '')}</p>
+      </div>
+      <ul>
+        ${pkg.features.map((feature) => `<li>${escapeHtml(feature)}</li>`).join('')}
+      </ul>
+      <div class="package-card__footer">
+        <span>
+          ${escapeHtml(pkg.recommended)}
+          <span class="package-card__translation-note">${escapeHtml(pkg.recommendedKo || '')}</span>
+        </span>
+        <button type="button" class="package-card__button ${pkg.id === selectedPackage.id ? 'is-active' : ''}" data-package-id="${pkg.id}">${allowRedirect ? '예약으로 이동' : '선택'}</button>
+      </div>
+    </article>
+  `).join('');
 
   if (grid.dataset.bound === 'true') return;
   grid.dataset.bound = 'true';
@@ -365,21 +428,24 @@ function renderPricing(gridId = 'pricingGrid', allowRedirect = false) {
   grid.addEventListener('click', (event) => {
     const button = event.target.closest('[data-package-id]');
     if (!button) return;
-    const selectedPackage = packageLibrary.find((pkg) => pkg.id === button.dataset.packageId) || packageLibrary[1];
-    const nextSelection = {
+    const nextPackage = findPackageById(button.dataset.packageId, library);
+    setBookingSelection({
       ...getBookingSelection(),
-      packageId: selectedPackage.id,
-      packageLabel: selectedPackage.label,
-      packagePrice: selectedPackage.price
-    };
-    setBookingSelection(nextSelection);
+      packageId: nextPackage.id,
+      packageLabel: nextPackage.label,
+      packagePrice: nextPackage.price
+    });
+    if (typeof onSelect === 'function') {
+      onSelect(nextPackage);
+    }
     if (grid.dataset.allowRedirect === 'true') {
       window.location.href = 'booking.html';
       return;
     }
-    renderPricing(gridId, false);
+    renderPricing(gridId, false, library);
   });
 }
+
 function renderFeed() {
   const grid = document.getElementById('feedGrid');
   if (!grid) return;
@@ -397,6 +463,7 @@ function renderFeed() {
     </article>
   `).join('');
 }
+
 function renderMasonry() {
   const grid = document.getElementById('masonryGrid');
   if (!grid) return;
@@ -448,14 +515,19 @@ function renderBooking() {
 
   const stored = getBookingSelection();
   let state = {
-    packageId: stored.packageId || packageLibrary[1].id,
+    packageId: stored.packageId || getDefaultPackage(bookingServiceLibrary).id,
     selectedDate: stored.selectedDate || '',
     selectedTime: stored.selectedTime || '',
     calendarMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   };
 
   function currentPackage() {
-    return packageLibrary.find((pkg) => pkg.id === state.packageId) || packageLibrary[1];
+    return findPackageById(state.packageId, bookingServiceLibrary);
+  }
+
+  function syncProceedState() {
+    if (!proceedButton) return;
+    proceedButton.disabled = !(state.packageId && state.selectedDate && state.selectedTime);
   }
 
   function sync() {
@@ -471,6 +543,7 @@ function renderBooking() {
       selectedDate: state.selectedDate,
       selectedTime: state.selectedTime
     });
+    syncProceedState();
   }
 
   function renderCalendar() {
@@ -538,11 +611,15 @@ function renderBooking() {
   if (proceedButton) {
     proceedButton.addEventListener('click', () => {
       sync();
+      if (proceedButton.disabled) return;
       window.location.href = 'contact.html';
     });
   }
 
-  renderPricing('bookingPackageGrid', false);
+  renderPricing('bookingPackageGrid', false, bookingServiceLibrary, (nextPackage) => {
+    state.packageId = nextPackage.id;
+    sync();
+  });
   renderCalendar();
   renderTimeSlots();
   sync();
@@ -551,6 +628,7 @@ function renderBooking() {
 function hydrateContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
+
   const serviceSelect = document.getElementById('serviceSelect');
   const selectedPackageInput = document.getElementById('selectedPackageInput');
   const preferredDateInput = document.getElementById('preferredDateInput');
@@ -560,11 +638,15 @@ function hydrateContactForm() {
   const bookingRecall = document.getElementById('bookingRecall');
 
   const stored = getBookingSelection();
-  serviceSelect.innerHTML = packageLibrary.map((pkg) => `<option value="${escapeHtml(pkg.id)}" ${pkg.id === (stored.packageId || packageLibrary[1].id) ? 'selected' : ''}>${escapeHtml(pkg.label)} / ${escapeHtml(pkg.price)}</option>`).join('');
+  const initialPackage = findPackageById(stored.packageId, bookingServiceLibrary);
+
+  serviceSelect.innerHTML = bookingServiceLibrary
+    .map((pkg) => `<option value="${escapeHtml(pkg.id)}" ${pkg.id === initialPackage.id ? 'selected' : ''}>${escapeHtml(pkg.label)} / ${escapeHtml(pkg.price)}</option>`)
+    .join('');
 
   function syncHiddenFields() {
     const selection = getBookingSelection();
-    const pkg = packageLibrary.find((item) => item.id === serviceSelect.value) || packageLibrary[1];
+    const pkg = findPackageById(serviceSelect.value || selection.packageId, bookingServiceLibrary);
     selectedPackageInput.value = `${pkg.label} / ${pkg.price}`;
     preferredDateInput.value = selection.selectedDate ? formatDateLabel(selection.selectedDate) : '';
     preferredTimeInput.value = selection.selectedTime || '';
@@ -575,14 +657,20 @@ function hydrateContactForm() {
 
   serviceSelect.addEventListener('change', () => {
     const selection = getBookingSelection();
-    const pkg = packageLibrary.find((item) => item.id === serviceSelect.value) || packageLibrary[1];
-    setBookingSelection({ ...selection, packageId: pkg.id, packageLabel: pkg.label, packagePrice: pkg.price });
+    const pkg = findPackageById(serviceSelect.value, bookingServiceLibrary);
+    setBookingSelection({
+      ...selection,
+      packageId: pkg.id,
+      packageLabel: pkg.label,
+      packagePrice: pkg.price
+    });
     syncHiddenFields();
   });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     syncHiddenFields();
+
     const formData = new FormData(form);
     formData.set('selected_package', selectedPackageInput.value);
     formData.set('preferred_date', preferredDateInput.value);
@@ -604,7 +692,7 @@ function hydrateContactForm() {
       }
 
       form.reset();
-      serviceSelect.value = getBookingSelection().packageId || packageLibrary[1].id;
+      serviceSelect.value = findPackageById(getBookingSelection().packageId, bookingServiceLibrary).id;
       syncHiddenFields();
       formStatus.textContent = '문의가 정상적으로 전송되었습니다. 곧 스튜디오 메일에서 확인할 수 있습니다.';
     } catch (error) {
@@ -618,6 +706,7 @@ function hydrateContactForm() {
 
   syncHiddenFields();
 }
+
 function openLightbox(src, caption) {
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightboxImage');
@@ -665,10 +754,12 @@ function setupScrollFocus(nodeList) {
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate);
 }
+
 function setupLightbox() {
   const lightbox = document.getElementById('lightbox');
   const closeButton = document.getElementById('lightboxClose');
   if (!lightbox || !closeButton) return;
+
   closeButton.addEventListener('click', () => lightbox.close());
   lightbox.addEventListener('click', (event) => {
     if (event.target === lightbox) lightbox.close();
@@ -681,6 +772,7 @@ function setupLightbox() {
 function setupReveal() {
   const elements = document.querySelectorAll('.reveal');
   if (!elements.length) return;
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -689,6 +781,7 @@ function setupReveal() {
       }
     });
   }, { threshold: 0.14 });
+
   elements.forEach((element) => observer.observe(element));
 }
 
@@ -698,6 +791,86 @@ function setupHeader() {
   window.addEventListener('scroll', () => {
     header.classList.toggle('is-scrolled', window.scrollY > 8);
   }, { passive: true });
+}
+
+function setupMobileHeader() {
+  const header = document.getElementById('siteHeader');
+  const toggle = document.getElementById('siteHeaderToggle');
+  const brand = header?.querySelector('.site-header__brand');
+  const meta = header?.querySelector('.site-header__meta');
+  const nav = header?.querySelector('.site-header__nav');
+  if (!header || !toggle || !brand || !meta || !nav) return;
+
+  const menu = document.createElement('div');
+  menu.className = 'site-header__mobile-menu';
+  menu.id = 'siteHeaderMenu';
+  menu.hidden = true;
+
+  const seen = new Set();
+  menu.innerHTML = [...meta.querySelectorAll('a'), ...nav.querySelectorAll('a')]
+    .map((link) => {
+      const href = link.getAttribute('href') || '';
+      const text = (link.textContent || '').trim();
+      const key = `${href}::${text}`;
+      if (!href || !text || seen.has(key)) return '';
+      seen.add(key);
+      const current = link.getAttribute('aria-current') === 'page' ? ' aria-current="page"' : '';
+      const target = link.getAttribute('target') === '_blank' ? ' target="_blank"' : '';
+      const relValue = link.getAttribute('rel');
+      const rel = relValue ? ` rel="${escapeHtml(relValue)}"` : '';
+      return `<a class="site-header__mobile-link" href="${escapeHtml(href)}"${current}${target}${rel}>${escapeHtml(text)}</a>`;
+    })
+    .filter(Boolean)
+    .join('');
+
+  header.append(menu);
+
+  function closeMenu() {
+    header.classList.remove('is-menu-open');
+    document.body.classList.remove('has-mobile-menu');
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.hidden = true;
+  }
+
+  function openMenu() {
+    header.classList.add('is-menu-open');
+    document.body.classList.add('has-mobile-menu');
+    toggle.setAttribute('aria-expanded', 'true');
+    menu.hidden = false;
+  }
+
+  toggle.addEventListener('click', () => {
+    if (header.classList.contains('is-menu-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) closeMenu();
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!header.classList.contains('is-menu-open')) return;
+    if (header.contains(event.target)) return;
+    closeMenu();
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 860) closeMenu();
+  });
+
+  brand.addEventListener('click', (event) => {
+    if (document.body.dataset.page !== 'home') return;
+    event.preventDefault();
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
 function setupHomeScrollCue() {
@@ -716,6 +889,7 @@ function setupHomeScrollCue() {
   syncCue();
   window.addEventListener('scroll', syncCue, { passive: true });
 }
+
 function setupLoader() {
   const loader = document.getElementById('pageLoader');
   if (!loader) return;
@@ -728,7 +902,7 @@ function init() {
   if (page === 'project') renderArchivePage('project');
   if (page === 'home') renderMasonry();
   if (page === 'home') setupHomeScrollCue();
-  if (page === 'pricing') renderPricing('pricingGrid', true);
+  if (page === 'pricing') renderPricing('pricingGrid', true, packageLibrary);
   if (page === 'booking') renderBooking();
   if (page === 'about') renderFeed();
   if (page === 'contact') hydrateContactForm();
@@ -736,15 +910,8 @@ function init() {
   setupLightbox();
   setupReveal();
   setupHeader();
+  setupMobileHeader();
   setupLoader();
 }
 
 init();
-
-
-
-
-
-
-
-
