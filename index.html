@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCUZ STUDIO | Seoul Photography Studio</title>
+  <meta
+    name="description"
+    content="OCUZ STUDIO is a Seoul-based photography studio by Hayoung Lim, shaping commercial, runway, and portrait work with a restrained editorial eye."
+  />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="canonical" href="https://ocuzstudio.com/" />
+  <meta property="og:title" content="OCUZ STUDIO | Seoul Photography Studio" />
+  <meta property="og:description" content="서울 기반 사진작가 임하영의 포토그래피 스튜디오 OCUZ STUDIO." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ocuzstudio.com/" />
+  <meta property="og:image" content="https://ocuzstudio.com/assets/portfolio/paw-02.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://type.cargo.site" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="home">
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <span>OCUZ STUDIO</span>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <div class="site-header__meta">
+        <a href="about.html">About</a>
+        <a href="https://www.behance.net/ocuzstudio" target="_blank" rel="noreferrer">Behance</a>
+      </div>
+      <a class="site-header__brand" href="index.html">OCUZ STUDIO</a>
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <a href="commercial.html">Commercial</a>
+        <a href="project.html">Project</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="booking.html">Booking</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="home-hero reveal">
+      <div class="home-hero__topline">Photography &amp; AI Studio</div>
+      <div class="home-hero__grid">
+        <div>
+          <h1 class="home-hero__title">OCUZ STUDIO</h1>
+          <p class="home-hero__copy">Ocuz.studio</p>
+          <p class="home-hero__copy-ko">Archive of Contemporary Visual Experiments</p>
+        </div>
+        <div class="home-hero__info"><a class="button home-hero__gallery" href="#masonryGrid">Gallery</a></div>
+      </div>
+    </section>
+
+
+    <button class="scroll-cue" id="scrollCue" type="button" aria-label="Scroll down">
+      <span class="scroll-cue__label">Scroll</span>
+      <span class="scroll-cue__arrow"></span>
+    </button>
+    <section class="home-links reveal" aria-label="Portfolio sections">
+      <a class="home-links__item" href="commercial.html">
+        <span class="home-links__eyebrow">Archive</span>
+        <strong>Commercial</strong>
+        <p>Commercial archive for brand and product-facing image work.</p>
+        <p class="home-links__translation">브랜드와 제품 중심의 커머셜 작업만 별도로 정리한 아카이브입니다.</p>
+      </a>
+      <a class="home-links__item" href="project.html">
+        <span class="home-links__eyebrow">Archive</span>
+        <strong>Project</strong>
+        <p>Project archive built around runway, city, and fashion-week sequences.</p>
+        <p class="home-links__translation">파리 패션위크와 런웨이 기록을 프로젝트 단위로 정리한 페이지입니다.</p>
+      </a>
+      <a class="home-links__item" href="pricing.html">
+        <span class="home-links__eyebrow">Booking</span>
+        <strong>Pricing</strong>
+        <p>Shooting menus plus AI image and video production pricing for brand work.</p>
+        <p class="home-links__translation">촬영 메뉴와 AI 이미지 / 영상 제작 메뉴를 함께 확인할 수 있습니다.</p>
+      </a>
+      <a class="home-links__item" href="contact.html">
+        <span class="home-links__eyebrow">Contact</span>
+        <strong>Inquiry</strong>
+        <p>Inquiry page for package, date, and project details.</p>
+        <p class="home-links__translation">패키지, 희망 일정, 프로젝트 개요를 함께 보내는 문의 페이지입니다.</p>
+      </a>
+    </section>
+
+    <section class="page-section reveal">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">Selected Frames</p>
+        <h2 class="section-heading__title">Gallery</h2>
+        <p class="section-heading__note">Selection built only from the four public Behance projects you shared.</p>
+      </div>
+      <div class="masonry-grid" id="masonryGrid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>OCUZ STUDIO</p>
+    <div>
+      <a href="commercial.html">Commercial</a>
+      <a href="project.html">Project</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="site-footer__contact">서울 중구 퇴계로41길 25 5층 502호 / <a href="tel:01064900453">010-6490-0453</a> / <a href="mailto:ocuz.studio@gmail.com">ocuz.studio@gmail.com</a> / <a href="https://www.instagram.com/hayoung.limm/" target="_blank" rel="noreferrer">@hayoung.limm</a></p>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close image">Close</button>
+    <div class="lightbox__content">
+      <img id="lightboxImage" alt="" />
+      <div class="lightbox__caption" id="lightboxCaption"></div>
+    </div>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
+
+
+
+

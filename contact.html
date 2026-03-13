@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | OCUZ STUDIO</title>
+  <meta name="description" content="OCUZ STUDIO 문의 페이지." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://ocuzstudio.com/contact.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://type.cargo.site" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="contact">
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <span>OCUZ STUDIO</span>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <div class="site-header__meta">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </div>
+      <a class="site-header__brand" href="index.html">OCUZ STUDIO</a>
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <a href="commercial.html">Commercial</a>
+        <a href="project.html">Project</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="booking.html">Booking</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero reveal">
+      <div class="page-hero__label">Studio Contact</div>
+      <div class="page-hero__grid">
+        <h1 class="page-hero__title">CONTACT</h1>
+        <p class="page-hero__copy">Send your package, preferred date, project details, and file attachments directly to the studio.</p>
+        <p class="page-hero__copy-ko">패키지, 희망 일정, 브랜드 또는 프로젝트 개요와 촬영 기획안 파일을 함께 첨부해 스튜디오 메일로 바로 전달할 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section class="contact-layout reveal">
+      <aside class="contact-info">
+        <p class="contact-info__lead">커머셜 촬영, 런웨이 기록, 룩북, 에디토리얼, 인물 촬영, 협업 문의를 받고 있습니다.</p>
+        <div class="contact-info__list">
+          <a href="tel:01064900453">010-6490-0453</a>
+          <a href="mailto:ocuz.studio@gmail.com">ocuz.studio@gmail.com</a>
+          <a href="https://www.instagram.com/hayoung.limm/" target="_blank" rel="noreferrer">@hayoung.limm</a>
+          <span>서울 중구 퇴계로41길 25 5층 502호</span>
+        </div>
+        <div class="contact-recall" id="bookingRecall">선택한 예약 정보가 여기에 표시됩니다.</div>
+      </aside>
+
+      <form class="contact-form" id="contactForm" enctype="multipart/form-data">
+        <input type="hidden" name="_subject" value="OCUZ STUDIO Website Inquiry" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="selected_package" id="selectedPackageInput" />
+        <input type="hidden" name="preferred_date" id="preferredDateInput" />
+        <input type="hidden" name="preferred_time" id="preferredTimeInput" />
+
+        <label>
+          성함
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          이메일
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          연락처
+          <input type="tel" name="phone" required />
+        </label>
+        <label>
+          촬영 유형
+          <select name="service" id="serviceSelect" required></select>
+        </label>
+        <label class="contact-form__wide">
+          브랜드 / 프로젝트명
+          <input type="text" name="project_name" />
+        </label>
+        <label class="contact-form__wide">
+          촬영 내용
+          <textarea name="concept" rows="6" required></textarea>
+        </label>
+        <label>
+          예산
+          <input type="text" name="budget" />
+        </label>
+        <label>
+          회신 방식
+          <select name="reply_method">
+            <option value="email">이메일</option>
+            <option value="phone">전화</option>
+            <option value="instagram">인스타그램 DM</option>
+          </select>
+        </label>
+        <label class="contact-form__wide">
+          촬영 기획안 첨부
+          <input type="file" name="attachment" accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.jpg,.jpeg,.png,.zip" />
+        </label>
+        <label class="contact-form__wide">
+          추가 메모
+          <textarea name="message" rows="5"></textarea>
+        </label>
+        <div class="contact-form__footer">
+          <p class="form-status" id="formStatus">문의 내용과 첨부 파일은 ocuz.studio@gmail.com 으로 전송됩니다.</p>
+          <button class="button button--primary" id="submitButton" type="submit">
+            <span class="button__label">문의 보내기</span>
+            <span class="button__spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>OCUZ STUDIO</p>
+    <div>
+      <a href="commercial.html">Commercial</a>
+      <a href="project.html">Project</a>
+      <a href="about.html">About</a>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

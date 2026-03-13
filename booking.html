@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking | OCUZ STUDIO</title>
+  <meta name="description" content="OCUZ STUDIO 예약 페이지." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://ocuzstudio.com/booking.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://type.cargo.site" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="booking">
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <span>OCUZ STUDIO</span>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <div class="site-header__meta">
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <a class="site-header__brand" href="index.html">OCUZ STUDIO</a>
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <a href="commercial.html">Commercial</a>
+        <a href="project.html">Project</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="booking.html" aria-current="page">Booking</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero reveal">
+      <div class="page-hero__label">Studio Booking</div>
+      <div class="page-hero__grid">
+        <h1 class="page-hero__title">BOOKING</h1>
+        <p class="page-hero__copy">Choose a package and leave your preferred date and time.</p>
+        <p class="page-hero__copy-ko">패키지와 희망 날짜, 시간을 남기면 스튜디오가 확인 후 최종 일정을 개별 안내합니다.</p>
+      </div>
+    </section>
+
+    <section class="page-section reveal">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">Package</p>
+        <h2 class="section-heading__title">Choose a package</h2>
+      </div>
+      <div class="pricing-grid pricing-grid--compact" id="bookingPackageGrid"></div>
+    </section>
+
+    <section class="page-section reveal">
+      <div class="booking-shell">
+        <aside class="booking-shell__summary">
+          <div class="booking-card">
+            <span>선택 패키지</span>
+            <strong id="bookingPackageName">Commercial Half Day</strong>
+            <p id="bookingPackagePrice">KRW 1,800,000</p>
+          </div>
+          <div class="booking-card">
+            <span>희망 일정</span>
+            <strong id="bookingDateLabel">날짜를 선택해 주세요</strong>
+            <p id="bookingTimeLabel">시간을 선택해 주세요</p>
+          </div>
+          <button class="button button--primary button--full" id="bookingProceed" type="button">문의 페이지로 이동</button>
+        </aside>
+
+        <div class="booking-shell__calendar">
+          <div class="calendar-toolbar">
+            <button class="calendar-toolbar__button" id="prevMonthButton" type="button">Prev</button>
+            <h3 id="calendarMonthLabel"></h3>
+            <button class="calendar-toolbar__button" id="nextMonthButton" type="button">Next</button>
+          </div>
+          <div class="calendar-weekdays">
+            <span>월</span>
+            <span>화</span>
+            <span>수</span>
+            <span>목</span>
+            <span>금</span>
+            <span>토</span>
+            <span>일</span>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <div class="booking-shell__times">
+          <h3>Preferred Time</h3>
+          <div class="time-slots" id="timeSlots"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>OCUZ STUDIO</p>
+    <div>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
+
+
+
+

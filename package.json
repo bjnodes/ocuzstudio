@@ -1,0 +1,17 @@
+﻿{
+  "name": "ocuzstudio-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static portfolio and booking website for OCUZ STUDIO.",
+  "scripts": {
+    "preview": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "photography",
+    "studio",
+    "static-site"
+  ],
+  "author": "OCUZ STUDIO",
+  "license": "UNLICENSED"
+}

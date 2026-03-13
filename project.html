@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project | OCUZ STUDIO</title>
+  <meta name="description" content="OCUZ STUDIO 프로젝트 아카이브 페이지." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://ocuzstudio.com/project.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://type.cargo.site" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="project">
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <span>OCUZ STUDIO</span>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <div class="site-header__meta">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </div>
+      <a class="site-header__brand" href="index.html">OCUZ STUDIO</a>
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <a href="commercial.html">Commercial</a>
+        <a href="project.html" aria-current="page">Project</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="booking.html">Booking</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="archive-hero reveal">
+      <div class="archive-hero__spacer" aria-hidden="true"></div>
+      <div class="archive-switch">
+        <a class="archive-switch__link" href="commercial.html">COMMERCIAL</a>
+        <a class="archive-switch__link is-active" href="project.html">PROJECT</a>
+      </div>
+    </section>
+
+    <section class="archive-layout reveal">
+      <aside class="archive-sidebar">
+        <div class="archive-sidebar__block" id="archiveGroups"></div>
+        <div class="archive-sidebar__block" id="archiveItems"></div>
+      </aside>
+      <div class="archive-detail" id="archiveDetail"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>OCUZ STUDIO</p>
+    <div>
+      <a href="commercial.html">Commercial</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close image">Close</button>
+    <div class="lightbox__content">
+      <img id="lightboxImage" alt="" />
+      <div class="lightbox__caption" id="lightboxCaption"></div>
+    </div>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
+
+
