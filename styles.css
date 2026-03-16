@@ -19,6 +19,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -31,6 +33,19 @@ body {
   line-height: 1.72;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.site-header__brand,
+.home-hero__title,
+.page-hero__title,
+.home-links__item strong,
+.section-heading__title,
+.archive-detail__title,
+.archive-switch__link {
+  font-family: "Instrument Serif", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-kerning: normal;
 }
 
 img {
@@ -1042,6 +1057,32 @@ button.is-loading .button__label {
     grid-column: span 1;
     margin-top: 0;
     transform: scale(var(--focus-scale, 1));
+  }
+
+  .home-links {
+    gap: 0.8rem;
+  }
+
+  .home-links__item {
+    min-height: 0;
+    padding: 1.25rem 1.15rem;
+    gap: 0.55rem;
+    border-radius: 22px;
+  }
+
+  .home-links__eyebrow {
+    font-size: 0.74rem;
+  }
+
+  .home-links__item strong {
+    font-size: 1.52rem;
+    line-height: 0.98;
+  }
+
+  .home-links__item p,
+  .home-links__translation {
+    font-size: 0.9rem;
+    line-height: 1.58;
   }
 }
 
