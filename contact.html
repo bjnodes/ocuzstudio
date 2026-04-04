@@ -25,27 +25,103 @@
       </div>
     </nav>
 
-    <section class="page-hero">
-      <div class="page-kicker" data-en="Contact" data-ko="연락"></div>
-      <h1 class="page-title" data-en="For commissions, collaborations, and visual direction inquiries." data-ko="커미션, 협업, 비주얼 디렉션 문의를 위한 연락 페이지입니다."></h1>
-      <p class="page-copy" data-en="Use the channels below to get in touch or browse the external portfolio platforms." data-ko="아래 채널을 통해 문의하거나 외부 포트폴리오 플랫폼을 확인할 수 있습니다."></p>
-    </section>
+    <section class="contact-shell">
+      <div class="contact-heading">
+        <h1 class="contact-title">CONTACT</h1>
+        <p
+          class="contact-intro"
+          data-en="For project inquiries, sharing the details below helps us offer more accurate guidance."
+          data-ko="프로젝트 문의는 아래 정보를 함께 전달해 주시면 보다 정확한 안내가 가능합니다."
+        ></p>
+      </div>
 
-    <section class="contact-grid">
-      <div class="contact-card">
-        <div class="info-label" data-en="Studio" data-ko="스튜디오"></div>
-        <div class="info-val" data-en="Ocuz Studio<br>25, Toegyero 41-gil<br>Jung-gu, Seoul<br>Korea" data-ko="오커즈 스튜디오<br>서울 중구 퇴계로41길 25<br>대한민국" data-i18n-html="true"></div>
-      </div>
-      <div class="contact-card">
-        <div class="info-label" data-en="Social" data-ko="소셜"></div>
-        <div class="info-val">
-          <a href="https://www.behance.net/ocuzstudio" target="_blank">Behance</a><br>
-          <a href="https://www.instagram.com/hayoung.limm" target="_blank">Instagram</a>
-        </div>
-      </div>
-      <div class="contact-card">
-        <div class="info-label" data-en="Availability" data-ko="가능 작업"></div>
-        <div class="info-val" data-en="Fashion editorial<br>Beauty campaigns<br>Still life commissions" data-ko="패션 에디토리얼<br>뷰티 캠페인<br>스틸라이프 커미션" data-i18n-html="true"></div>
+      <div class="contact-layout">
+        <section class="contact-request">
+          <form class="contact-form" id="contact-form">
+            <div class="contact-fields">
+              <label class="contact-field">
+                <span class="contact-label" data-en="Brand / Company" data-ko="브랜드 / 회사명"></span>
+                <input type="text" name="brand" required>
+              </label>
+
+              <label class="contact-field">
+                <span class="contact-label" data-en="Contact name and details" data-ko="담당자 성함 및 연락처"></span>
+                <input type="text" name="contactPerson" required>
+              </label>
+
+              <label class="contact-field">
+                <span class="contact-label" data-en="Project type" data-ko="프로젝트 유형"></span>
+                <select name="projectType" required>
+                  <option value="" data-en="Select a type" data-ko="유형 선택"></option>
+                  <option value="Fashion" data-en="Fashion" data-ko="패션"></option>
+                  <option value="Beauty" data-en="Beauty" data-ko="뷰티"></option>
+                  <option value="Still Life" data-en="Still Life" data-ko="스틸라이프"></option>
+                  <option value="Campaign" data-en="Campaign" data-ko="캠페인"></option>
+                  <option value="Other" data-en="Other" data-ko="기타"></option>
+                </select>
+              </label>
+
+              <label class="contact-field">
+                <span class="contact-label" data-en="Project overview" data-ko="프로젝트 개요"></span>
+                <textarea name="overview" rows="4" required></textarea>
+              </label>
+
+              <label class="contact-field">
+                <span class="contact-label" data-en="Purpose and usage" data-ko="촬영 목적 및 사용 매체"></span>
+                <textarea name="usage" rows="3" required></textarea>
+              </label>
+
+              <div class="contact-field contact-field-schedule">
+                <span class="contact-label" data-en="Preferred schedule" data-ko="촬영 일정"></span>
+                <div class="contact-schedule">
+                  <label class="contact-date-card">
+                    <span class="contact-date-label" data-en="Primary date" data-ko="희망 일정"></span>
+                    <input type="date" name="shootDate" required>
+                  </label>
+                  <label class="contact-date-card">
+                    <span class="contact-date-label" data-en="Alternate date" data-ko="대체 일정"></span>
+                    <input type="date" name="altDate">
+                  </label>
+                </div>
+              </div>
+
+              <label class="contact-field">
+                <span class="contact-label" data-en="Estimated budget" data-ko="예상 예산"></span>
+                <input type="text" name="budget" required>
+              </label>
+
+              <label class="contact-field">
+                <span class="contact-label" data-en="Additional requests (optional)" data-ko="기타 요청 사항 (선택)"></span>
+                <textarea name="notes" rows="4"></textarea>
+              </label>
+            </div>
+
+            <div class="contact-actions">
+              <button type="submit" class="contact-submit" data-en="Compose Email" data-ko="메일 작성하기"></button>
+              <p
+                class="contact-note"
+                data-en="This site opens your mail app with the inquiry details filled in. Direct server-side sending is not enabled on this static site."
+                data-ko="이 사이트는 문의 내용을 자동으로 채운 메일 작성 창을 엽니다. 현재 정적 사이트라 서버에서 직접 전송되지는 않습니다."
+              ></p>
+            </div>
+          </form>
+        </section>
+
+        <aside class="contact-sidebar">
+          <div class="contact-sidebar-block">
+            <div class="info-label">Email</div>
+            <div class="info-val"><a href="mailto:ocuz.studio@gmail.com">ocuz.studio@gmail.com</a></div>
+          </div>
+          <div class="contact-sidebar-block">
+            <div class="info-label">Based in Seoul</div>
+            <p
+              class="contact-side-copy"
+              data-en="We value building a brand’s direction and context together through the work itself."
+              data-ko="브랜드의 방향성과 맥락을<br>함께 설계하는 작업을 지향합니다."
+              data-i18n-html="true"
+            ></p>
+          </div>
+        </aside>
       </div>
     </section>
 

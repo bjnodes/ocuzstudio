@@ -309,6 +309,7 @@ const lightboxCount = document.getElementById("lightbox-count");
 const lightboxClose = document.getElementById("lightbox-close");
 const lightboxPrev = document.getElementById("lightbox-prev");
 const lightboxNext = document.getElementById("lightbox-next");
+const contactForm = document.getElementById("contact-form");
 
 let currentLanguage = window.localStorage.getItem("siteLanguage") || "en";
 let activeProject = null;
@@ -549,6 +550,63 @@ function setLanguage(lang) {
   renderLightbox();
 }
 
+function initContactForm() {
+  if (!contactForm) {
+    return;
+  }
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const brand = formData.get("brand")?.toString().trim() || "";
+    const contactPerson = formData.get("contactPerson")?.toString().trim() || "";
+    const projectType = formData.get("projectType")?.toString().trim() || "";
+    const overview = formData.get("overview")?.toString().trim() || "";
+    const usage = formData.get("usage")?.toString().trim() || "";
+    const shootDate = formData.get("shootDate")?.toString().trim() || "";
+    const altDate = formData.get("altDate")?.toString().trim() || "";
+    const budget = formData.get("budget")?.toString().trim() || "";
+    const notes = formData.get("notes")?.toString().trim() || "";
+
+    const isKo = currentLanguage === "ko";
+    const subject = isKo
+      ? `[OCUZ STUDIO 문의] ${brand || "프로젝트 문의"}`
+      : `[OCUZ STUDIO Inquiry] ${brand || "Project Inquiry"}`;
+
+    const bodyLines = isKo
+      ? [
+          "안녕하세요, OCUZ STUDIO 문의드립니다.",
+          "",
+          `브랜드 / 회사명: ${brand}`,
+          `담당자 성함 및 연락처: ${contactPerson}`,
+          `프로젝트 유형: ${projectType}`,
+          `프로젝트 개요: ${overview}`,
+          `촬영 목적 및 사용 매체: ${usage}`,
+          `촬영 일정: ${shootDate}`,
+          `대체 일정: ${altDate || "-"}`,
+          `예상 예산: ${budget}`,
+          `기타 요청 사항: ${notes || "-"}`
+        ]
+      : [
+          "Hello, I would like to inquire about a project with OCUZ STUDIO.",
+          "",
+          `Brand / Company: ${brand}`,
+          `Contact name and details: ${contactPerson}`,
+          `Project type: ${projectType}`,
+          `Project overview: ${overview}`,
+          `Purpose and usage: ${usage}`,
+          `Preferred schedule: ${shootDate}`,
+          `Alternate date: ${altDate || "-"}`,
+          `Estimated budget: ${budget}`,
+          `Additional requests: ${notes || "-"}`
+        ];
+
+    const mailtoUrl = `mailto:ocuz.studio@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    window.location.href = mailtoUrl;
+  });
+}
+
 document.querySelectorAll("[data-set-lang]").forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.setLang));
 });
@@ -587,3 +645,4 @@ applyStaticTranslations();
 renderStrip();
 renderGrid();
 initStripMotion();
+initContactForm();
