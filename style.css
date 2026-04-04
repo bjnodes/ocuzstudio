@@ -753,14 +753,39 @@ body.is-lightbox-open {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  nav {
-    padding: 14px 20px;
+  body {
+    overflow-x: hidden;
   }
+  nav {
+    padding: 14px 20px 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .nav-left,
   .nav-right {
-    gap: 14px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .nav-left {
+    position: static;
+    top: 0;
   }
   .nav-lang-switch {
+    position: static;
+    top: 0;
+    align-self: center;
     margin-right: 0;
+    gap: 6px;
+  }
+  nav a,
+  .lang-btn {
+    font-size: 10px;
+    line-height: 10px;
+    letter-spacing: 0.06em;
   }
   .page-hero {
     padding: 44px 20px 32px;
@@ -808,18 +833,39 @@ body.is-lightbox-open {
   .hero {
     padding: 40px 20px 30px;
   }
+  .breadcrumb {
+    margin-bottom: 18px;
+    gap: 6px;
+  }
+  .hero-desc {
+    max-width: none;
+    font-size: 13px;
+    line-height: 1.75;
+  }
   .strip {
-    padding: 18px 20px 44px;
+    padding: 18px 20px 32px;
+    overflow: visible;
   }
   .strip-inner {
-    gap: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+    min-width: 0;
+  }
+  .thumb-item {
+    min-width: 0;
   }
   .thumb-img {
-    width: 192px;
-    height: 150px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
   .thumb-title {
-    max-width: 192px;
+    max-width: none;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    line-height: 1.45;
   }
   .footer-bar {
     padding: 14px 20px;
