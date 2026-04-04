@@ -64,6 +64,14 @@ nav a,
   border: 0;
   padding: 0;
 }
+.nav-logo-link {
+  line-height: 0;
+}
+.nav-logo-link img {
+  display: block;
+  width: auto;
+  height: 18px;
+}
 .mobile-nav-toggle,
 .mobile-nav-logo,
 .mobile-nav-mail,
@@ -136,10 +144,10 @@ nav a,
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 56px 22px 28px;
+  padding: 48px 22px 28px;
 }
 .mobile-drawer-lang {
-  margin-bottom: 18px;
+  margin-bottom: 30px;
 }
 .mobile-drawer-menu {
   display: grid;
