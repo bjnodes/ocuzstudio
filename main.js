@@ -310,6 +310,9 @@ const lightboxClose = document.getElementById("lightbox-close");
 const lightboxPrev = document.getElementById("lightbox-prev");
 const lightboxNext = document.getElementById("lightbox-next");
 const contactForm = document.getElementById("contact-form");
+const mobileNavToggles = document.querySelectorAll(".mobile-nav-toggle");
+const mobileDrawerBackdrops = document.querySelectorAll(".mobile-drawer-backdrop");
+const mobileDrawerLinks = document.querySelectorAll(".mobile-drawer a");
 
 let currentLanguage = window.localStorage.getItem("siteLanguage") || "en";
 let activeProject = null;
@@ -607,8 +610,49 @@ function initContactForm() {
   });
 }
 
+function openMobileDrawer() {
+  document.body.classList.add("is-mobile-drawer-open");
+  mobileNavToggles.forEach((button) => button.setAttribute("aria-expanded", "true"));
+  document.querySelectorAll(".mobile-drawer").forEach((drawer) => drawer.setAttribute("aria-hidden", "false"));
+}
+
+function closeMobileDrawer() {
+  document.body.classList.remove("is-mobile-drawer-open");
+  mobileNavToggles.forEach((button) => button.setAttribute("aria-expanded", "false"));
+  document.querySelectorAll(".mobile-drawer").forEach((drawer) => drawer.setAttribute("aria-hidden", "true"));
+}
+
 document.querySelectorAll("[data-set-lang]").forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.setLang));
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    setLanguage(button.dataset.setLang);
+  });
+});
+
+mobileNavToggles.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (document.body.classList.contains("is-mobile-drawer-open")) {
+      closeMobileDrawer();
+    } else {
+      openMobileDrawer();
+    }
+  });
+});
+
+mobileDrawerBackdrops.forEach((backdrop) => {
+  backdrop.addEventListener("click", closeMobileDrawer);
+});
+
+mobileDrawerLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    closeMobileDrawer();
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("is-mobile-drawer-open")) {
+    closeMobileDrawer();
+  }
 });
 
 if (lightbox && lightboxClose) {

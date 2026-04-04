@@ -9,6 +9,18 @@
 <body>
   <div class="site">
     <nav>
+      <button class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="index.html" class="mobile-nav-logo" aria-label="Home">OCUZ</a>
+      <a href="contact.html" class="mobile-nav-mail" aria-label="Go to contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 6.75h18v10.5H3z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M4.5 8.25 12 13.5l7.5-5.25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+      </a>
       <div class="nav-left">
         <a href="work.html">Work</a>
         <a href="about.html">About</a>
@@ -24,6 +36,24 @@
         <a href="index.html">ocuz.studio ↗</a>
       </div>
     </nav>
+    <div class="mobile-drawer-backdrop" data-mobile-drawer-close></div>
+    <aside class="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+        <div class="lang-switch mobile-drawer-lang" aria-label="Language switcher">
+          <a href="#" class="lang-btn" data-set-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-set-lang="ko">KOR</a>
+        </div>
+        <div class="mobile-drawer-menu">
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="mobile-drawer-social">
+          <a href="https://www.behance.net/ocuzstudio" target="_blank">Behance</a>
+          <a href="https://www.instagram.com/hayoung.limm" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </aside>
 
     <div class="hero">
       <div class="breadcrumb" data-en="Photographers / Fashion / Visual Direction / Still Life / Beauty / Seoul" data-ko="포토그래퍼 / 패션 / 비주얼 디렉션 / 스틸라이프 / 뷰티 / 서울"></div>
