@@ -66,11 +66,13 @@ nav a,
 }
 .nav-logo-link {
   line-height: 0;
+  position: relative;
+  top: 1px;
 }
 .nav-logo-link img {
   display: block;
   width: auto;
-  height: 18px;
+  height: 36px;
 }
 .mobile-nav-toggle,
 .mobile-nav-logo,
