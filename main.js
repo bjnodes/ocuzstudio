@@ -373,7 +373,6 @@ function renderStrip() {
     const item = document.createElement("div");
     item.className = "thumb-item";
     item.innerHTML = `
-      <div class="thumb-num">${project.num}</div>
       <img class="thumb-img" src="${previewImage}" alt="${getProjectTitle(project)}" loading="lazy" decoding="async">
       <div class="thumb-title">${getProjectTitle(project)}</div>
     `;
