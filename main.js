@@ -300,6 +300,7 @@ const lightbox = document.getElementById("lightbox");
 const lightboxStage = document.querySelector(".lightbox-stage");
 const lightboxMeta = document.querySelector(".lightbox-meta");
 const lightboxImage = document.getElementById("lightbox-image");
+const lightboxMobileStack = document.getElementById("lightbox-mobile-stack");
 const lightboxPeekPrev = document.getElementById("lightbox-peek-prev");
 const lightboxPeekNext = document.getElementById("lightbox-peek-next");
 const lightboxPeekImagePrev = document.getElementById("lightbox-peek-image-prev");
@@ -314,11 +315,15 @@ const mobileNavToggles = document.querySelectorAll(".mobile-nav-toggle");
 const mobileDrawerBackdrops = document.querySelectorAll(".mobile-drawer-backdrop");
 const mobileDrawerLinks = document.querySelectorAll(".mobile-drawer a");
 
-let currentLanguage = window.localStorage.getItem("siteLanguage") || "en";
+let currentLanguage = "en";
 let activeProject = null;
 let activeIndex = 0;
 let stripMotionBound = false;
 let lightboxAnimationTimer = null;
+
+function isMobileViewport() {
+  return window.innerWidth <= 768;
+}
 
 function getProjectTitle(project) {
   return currentLanguage === "ko" ? projectTitlesKo[project.num] || project.title : project.title;
@@ -468,13 +473,31 @@ function renderLightbox() {
     return;
   }
 
+  const mobileView = isMobileViewport();
   const prevImage = activeProject.gallery[activeIndex - 1] || "";
   const nextImage = activeProject.gallery[activeIndex + 1] || "";
 
   lightboxTitle.textContent = getProjectTitle(activeProject);
-  lightboxCount.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(activeProject.gallery.length).padStart(2, "0")}`;
+  lightboxCount.textContent = mobileView
+    ? currentLanguage === "ko"
+      ? `${String(activeProject.gallery.length).padStart(2, "0")} 이미지`
+      : `${String(activeProject.gallery.length).padStart(2, "0")} Images`
+    : `${String(activeIndex + 1).padStart(2, "0")} / ${String(activeProject.gallery.length).padStart(2, "0")}`;
   lightboxImage.src = activeProject.gallery[activeIndex];
   lightboxImage.alt = `${getProjectTitle(activeProject)} ${activeIndex + 1}`;
+
+  if (lightboxMobileStack) {
+    if (mobileView) {
+      lightboxMobileStack.innerHTML = activeProject.gallery
+        .map(
+          (imageUrl, index) =>
+            `<img src="${imageUrl}" alt="${getProjectTitle(activeProject)} ${index + 1}" loading="lazy" decoding="async">`
+        )
+        .join("");
+    } else {
+      lightboxMobileStack.innerHTML = "";
+    }
+  }
 
   if (lightboxPeekPrev && lightboxPeekImagePrev) {
     lightboxPeekImagePrev.src = prevImage;
@@ -507,6 +530,9 @@ function openLightbox(project) {
   lightbox.classList.add("is-open");
   lightbox.setAttribute("aria-hidden", "false");
   document.body.classList.add("is-lightbox-open");
+  if (lightboxStage) {
+    lightboxStage.scrollTop = 0;
+  }
 }
 
 function closeLightbox() {
@@ -520,7 +546,7 @@ function closeLightbox() {
 }
 
 function stepLightbox(direction) {
-  if (!activeProject || !lightbox) {
+  if (!activeProject || !lightbox || isMobileViewport()) {
     return;
   }
   const nextIndex = activeIndex + direction;
