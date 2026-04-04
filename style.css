@@ -31,21 +31,15 @@ nav {
 .nav-right {
   display: flex;
   gap: 28px;
-  align-items: flex-end;
-}
-.nav-left {
-  position: relative;
-  top: -10px;
+  align-items: center;
 }
 .nav-lang-switch {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
   margin-bottom: 0;
   margin-right: 4px;
-  align-self: flex-end;
-  position: relative;
-  top: 13px;
+  align-self: center;
 }
 nav a,
 .lang-btn {
@@ -55,9 +49,9 @@ nav a,
   text-decoration: none;
   color: #222;
   cursor: pointer;
-  line-height: 11px;
+  line-height: 1;
   display: inline-flex;
-  align-items: flex-end;
+  align-items: center;
   font-family: inherit;
   font-weight: 400;
   background: transparent;
@@ -66,8 +60,7 @@ nav a,
 }
 .nav-logo-link {
   line-height: 0;
-  position: relative;
-  top: 1px;
+  align-items: center;
 }
 .nav-logo-link img {
   display: block;
