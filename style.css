@@ -99,7 +99,7 @@ nav a,
 .mobile-nav-logo img {
   display: block;
   width: auto;
-  height: 20px;
+  height: 40px;
 }
 .mobile-nav-mail {
   width: 24px;
@@ -849,7 +849,7 @@ body.is-lightbox-open {
 .brand-logo-image {
   display: block;
   width: auto;
-  height: 52px;
+  height: 104px;
 }
 .brand-sub {
   font-size: 10px;
@@ -899,7 +899,7 @@ body.is-lightbox-open {
     justify-self: center;
   }
   .mobile-nav-logo img {
-    height: 16px;
+    height: 32px;
   }
   .mobile-nav-mail {
     justify-self: end;
@@ -1075,7 +1075,7 @@ body.is-lightbox-open {
     font-size: 36px;
   }
   .brand-logo-image {
-    height: 36px;
+    height: 72px;
   }
   .brand-sub {
     text-align: left;
