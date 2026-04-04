@@ -124,7 +124,7 @@ nav a,
   position: fixed;
   top: 0;
   left: 0;
-  width: min(280px, 82vw);
+  width: min(248px, 76vw);
   height: 100vh;
   background: #fff;
   border-right: 0.5px solid #ececec;
@@ -161,10 +161,21 @@ nav a,
 .mobile-drawer-social {
   margin-top: auto;
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 .mobile-drawer-social a {
   font-size: 11px;
+}
+.mobile-drawer-logo {
+  display: inline-flex;
+  align-self: flex-start;
+  line-height: 0;
+}
+.mobile-drawer-logo img {
+  display: block;
+  width: auto;
+  height: 28px;
 }
 body.is-mobile-drawer-open {
   overflow: hidden;
