@@ -1,9 +1,0 @@
-﻿{
-  "name": "OCUZ STUDIO",
-  "short_name": "OCUZ",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#f4ede4",
-  "theme_color": "#18120d",
-  "lang": "ko-KR"
-}
