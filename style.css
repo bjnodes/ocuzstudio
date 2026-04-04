@@ -1029,7 +1029,7 @@ body.is-lightbox-open {
     font-size: 10px;
     gap: 12px;
     position: absolute;
-    top: 56px;
+    top: 44px;
     left: 0;
     right: 0;
     z-index: 2;
